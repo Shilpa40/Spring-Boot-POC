@@ -27,9 +27,6 @@ steps:
       sonar.projectKey=shilpa0651_POC-Maven-Project
       sonar.projectName=POC-Maven-Project
 
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
 
 - task: Maven@3
   inputs:
@@ -42,6 +39,11 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+    
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.jar'
