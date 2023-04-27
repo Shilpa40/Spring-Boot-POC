@@ -10,6 +10,27 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- checkout: self
+  fetchDepth: 0
+  
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'shilpa'
+    scannerMode: 'Other'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      
+      sonar.projectKey=shilpa0651_POC-Maven-Project
+      sonar.projectName=POC-Maven-Project
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -30,3 +51,6 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+    
+
+  
