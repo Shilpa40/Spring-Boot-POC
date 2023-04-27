@@ -18,9 +18,12 @@ steps:
     SonarCloud: 'SonarCloud'
     organization: 'shilpa'
     scannerMode: 'Other'
-    extraProperties: 
-      'sonar.projectKey=shilpa0651_POC-Maven-Project'
-      'sonar.projectName=POC-Maven-Project'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner,
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.projectKey=shilpa0651_POC-Maven-Project
+      sonar.projectName=POC-Maven-Project
       
 - task: Maven@3
   inputs:
